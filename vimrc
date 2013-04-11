@@ -51,7 +51,7 @@ NeoBundle 'git://github.com/kana/vim-textobj-user.git'
 
 "snippet
 NeoBundle 'git://github.com/Shougo/neosnippet.git'
-NeoBundle 'git://github.com/honza/snipmate-snippets.git'
+NeoBundle 'git://github.com/honza/vim-snippets.git'
 
 "HTML
 NeoBundle 'git://github.com/mattn/zencoding-vim.git'
