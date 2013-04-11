@@ -118,8 +118,19 @@ augroup highlightIdegraphicSpace
     autocmd ColorScheme * highlight IdeographicSpace term=underline ctermbg=DarkGreen guibg=DarkGreen
     autocmd VimEnter,WinEnter * match IdeographicSpace /　/
 augroup END
+
 "色設定
-colorscheme peachpuff
+function! DefaultStyle ()
+    colorscheme peachpuff
+endfunction
+:command! DefaultStyle :call DefaultStyle()
+
+function! DemoStyle ()
+    colorscheme zellner
+endfunction
+:command! DemoStyle :call DemoStyle()
+
+call DefaultStyle()
 
 "対応するカッコを表示
 set showmatch

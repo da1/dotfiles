@@ -7,7 +7,7 @@
 [core]
 	editor = vim -c \"set fenc=utf-8\"
 	pager = nkf -w | LESSCHARSET=utf-8 less
-	excludesfile = .gitignore
+	excludesfile = ~/.gitignore
 [grep]
 	lineNumber = true
 [alias]
