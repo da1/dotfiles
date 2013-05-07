@@ -59,6 +59,8 @@ alias lg="git log"
 alias gg="git grep"
 
 alias t="tmux"
+alias tat="tmux a -t"
+alias tls="tmux ls"
 
 if which rbenv >& /dev/null ; then
     eval "$(rbenv init -)"
