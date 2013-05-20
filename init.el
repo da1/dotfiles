@@ -2,7 +2,7 @@
 ;; ただし、add-to-load-path関数を作成した場合は不要
 ;; (add-to-list 'load-path "~/.emacs.d/elisp")
 
-(when (> emacs-major-version 23)
+(when (< emacs-major-version 23)
   (defvar user-emacs-directory "~/.emacs.d"))
 
 ;; load-pathを追加する関数を定義

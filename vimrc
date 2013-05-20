@@ -21,6 +21,7 @@ NeoBundle 'git://github.com/Shougo/vimshell.git'
 NeoBundle 'git://github.com/Shougo/vimfiler.git'
 NeoBundle 'git://github.com/Shougo/vimproc.git', { 'build' : {
     \       'unix' : 'make -f make_unix.mak',
+    \       'mac' : 'make -f make_mac.mak',
     \       },
     \   }
 
@@ -55,6 +56,9 @@ NeoBundle 'git://github.com/honza/vim-snippets.git'
 
 "HTML
 NeoBundle 'git://github.com/mattn/zencoding-vim.git'
+
+" gosh
+NeoBundle 'git://github.com/aharisu/vim_goshrepl.git'
 
 "Perl
 NeoBundle 'git://github.com/nakatakeshi/jump2pm.vim.git'
@@ -108,6 +112,7 @@ set expandtab
 "set spell
 "ベル
 set noerrorbells
+syntax on
 
 "不可視文字の表示
 set list listchars=tab:^_,trail:_
@@ -403,3 +408,17 @@ let g:EasyMotion_grouping=1
 " カラー設定変更
 hi EasyMotionTarget ctermbg=none ctermfg=red
 hi EasyMotionShade  ctermbg=none ctermfg=blue
+
+"==================== vim_goshrepl.git ====================
+let g:neocomplcache_keyword_patterns['gosh-repl'] = "[[:alpha:]+*/@$_=.!?-][[:alnum:]+*/@$_:=.!?-]*"
+let g:gosh_buffer_direction = 'v'
+let g:gosh_buffer_width = 80
+
+vmap <CR> <Plug>(gosh_repl_send_block)
+"http://d.hatena.ne.jp/aharisu/20120430/1335762494
+"GoshREPL    gosh REPLを起動する
+"GoshREPLWithBuffer  現在バッファのテキストを全て評価済みの状態でgosh REPLを起動する
+"GoshREPLClear   gosh REPLの内容をすべてクリアする
+"GoshREPLSend hoge   引数のhogeをGaucheの式としてgosh REPL内で評価する
+"まだgosh REPLが起動していない場合は自動的に新しいREPLが起動する
+"GoshREPLLines   GoshREPL内で実行したすべての式をリスト表示する
