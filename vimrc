@@ -30,7 +30,7 @@ NeoBundle 'git://github.com/vim-scripts/Align.git'
 NeoBundle 'git://github.com/vim-jp/vimdoc-ja.git'
 NeoBundle 'git://github.com/tpope/vim-surround.git'
 NeoBundle 'git://github.com/tpope/vim-pathogen.git'
-NeoBundle 'git://github.com/scrooloose/syntastic.git'
+"NeoBundle 'git://github.com/scrooloose/syntastic.git'
 NeoBundle 'git://github.com/thinca/vim-ref.git'
 NeoBundle 'git://github.com/kana/vim-operator-user.git'
 NeoBundle 'git://github.com/kana/vim-operator-replace.git'
@@ -156,7 +156,7 @@ set fileencodings=utf-8,euc_jp,iso-2022-jp
 set viminfo='1000,<500
 
 "ファイルタイプによるシンタックス割り当て
-autocmd BufNewFile,BufRead *.t set filetype=perl
+autocmd BufNewFile,BufRead *.t,*.psgi set filetype=perl
 autocmd BufNewFile,BufRead *.scala set filetype=scala
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 autocmd BufNewFile,BufRead *.ts set filetype=typescript
@@ -303,6 +303,7 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
 let g:neosnippet#enable_snipmate_compatibility = 1
 
 "==================== syntastic ====================
+let g:syntastic_check_on_wq=0
 let g:syntastic_auto_loc_list=1
 let g:syntastic_enable_signs=1
 
