@@ -40,6 +40,7 @@ NeoBundle 'git://github.com/nathanaelkane/vim-indent-guides.git'
 NeoBundle 'git://github.com/ynkdir/vim-funlib.git'
 NeoBundle 'git://github.com/taku-o/vim-toggle.git'
 NeoBundle 'git://github.com/mileszs/ack.vim.git'
+NeoBundle 'git://github.com/rking/ag.vim.git'
 NeoBundle 'git://github.com/sakuraiyuta/commentout.vim.git'
 NeoBundle 'git://github.com/ujihisa/unite-colorscheme.git'
 NeoBundle 'git://github.com/Lokaltog/vim-easymotion.git'
@@ -299,7 +300,7 @@ if has('conceal')
     set conceallevel=2 concealcursor=i
 endif
 
-let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 let g:neosnippet#enable_snipmate_compatibility = 1
 
 "==================== syntastic ====================
@@ -414,8 +415,8 @@ hi EasyMotionShade  ctermbg=none ctermfg=blue
 let g:neocomplcache_keyword_patterns['gosh-repl'] = "[[:alpha:]+*/@$_=.!?-][[:alnum:]+*/@$_:=.!?-]*"
 let g:gosh_buffer_direction = 'v'
 let g:gosh_buffer_width = 80
-
 vmap <CR> <Plug>(gosh_repl_send_block)
+
 "http://d.hatena.ne.jp/aharisu/20120430/1335762494
 "GoshREPL    gosh REPLを起動する
 "GoshREPLWithBuffer  現在バッファのテキストを全て評価済みの状態でgosh REPLを起動する
@@ -423,3 +424,36 @@ vmap <CR> <Plug>(gosh_repl_send_block)
 "GoshREPLSend hoge   引数のhogeをGaucheの式としてgosh REPL内で評価する
 "まだgosh REPLが起動していない場合は自動的に新しいREPLが起動する
 "GoshREPLLines   GoshREPL内で実行したすべての式をリスト表示する
+
+"==================== vim-ref ====================
+"http://www.karakaram.com/ref-webdict
+"webdictサイトの設定
+let g:ref_source_webdict_sites = {
+            \   'je': {
+            \     'url': 'http://dictionary.infoseek.ne.jp/jeword/%s',
+            \   },
+            \   'ej': {
+            \     'url': 'http://dictionary.infoseek.ne.jp/ejword/%s',
+            \   },
+            \   'wiki': {
+            \     'url': 'http://ja.wikipedia.org/wiki/%s',
+            \   },
+            \ }
+ 
+"デフォルトサイト
+let g:ref_source_webdict_sites.default = 'ej'
+ 
+"出力に対するフィルタ。最初の数行を削除
+function! g:ref_source_webdict_sites.je.filter(output)
+    return join(split(a:output, "\n")[15 :], "\n")
+endfunction
+function! g:ref_source_webdict_sites.ej.filter(output)
+    return join(split(a:output, "\n")[15 :], "\n")
+endfunction
+function! g:ref_source_webdict_sites.wiki.filter(output)
+    return join(split(a:output, "\n")[17 :], "\n")
+endfunction
+
+"\rj
+nmap <Leader>rj :<C-u>Ref webdict je<Space>
+nmap <Leader>re :<C-u>Ref webdict ej<Space>
