@@ -46,6 +46,8 @@ NeoBundle 'git://github.com/ujihisa/unite-colorscheme.git'
 NeoBundle 'git://github.com/Lokaltog/vim-easymotion.git'
 NeoBundle 'git://github.com/mattn/webapi-vim.git'
 NeoBundle 'git://github.com/thinca/vim-quickrun.git'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'ujihisa/camelcasemotion'
 
 "TextObj
 NeoBundle 'git://github.com/h1mesuke/textobj-wiw.git'
@@ -80,6 +82,9 @@ NeoBundle 'git://github.com/vim-scripts/extradite.vim.git'
 "binary
 "http://d.hatena.ne.jp/alwei/20120220/1329756198
 NeoBundle 'git://github.com/Shougo/vinarise.git'
+
+"neta
+NeoBundle 'thinca/vim-scouter'
 
 filetype plugin indent on     " Required!
 "
