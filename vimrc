@@ -47,7 +47,7 @@ NeoBundle 'git://github.com/Lokaltog/vim-easymotion.git'
 NeoBundle 'git://github.com/mattn/webapi-vim.git'
 NeoBundle 'git://github.com/thinca/vim-quickrun.git'
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'ujihisa/camelcasemotion'
+"NeoBundle 'ujihisa/camelcasemotion'
 
 "TextObj
 NeoBundle 'git://github.com/h1mesuke/textobj-wiw.git'
