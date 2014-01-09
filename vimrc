@@ -48,6 +48,8 @@ NeoBundle 'git://github.com/mattn/webapi-vim.git'
 NeoBundle 'git://github.com/thinca/vim-quickrun.git'
 NeoBundle 'kien/ctrlp.vim'
 "NeoBundle 'ujihisa/camelcasemotion'
+NeoBundle 'osyo-manga/vim-over'
+NeoBundle 'itchyny/calendar.vim'
 
 "TextObj
 NeoBundle 'git://github.com/h1mesuke/textobj-wiw.git'
@@ -166,6 +168,8 @@ autocmd BufNewFile,BufRead *.t,*.psgi set filetype=perl
 autocmd BufNewFile,BufRead *.scala set filetype=scala
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 autocmd BufNewFile,BufRead *.ts set filetype=typescript
+autocmd BufNewFile,BufRead Vagrantfile set filetype=ruby
+autocmd BufNewFile,BufRead *.json set filetype=javascript
 
 "==================== keybind ====================
 "ctrl-c を ESCに置き換え
@@ -199,6 +203,9 @@ nnoremap <silent> ciy ciw<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
 nnoremap <C-c><C-c> :nohlsearch<CR>
 
 nnoremap <SPACE>c :! perl -wc -Ilib -It/inc %<ENTER>
+
+command Vimrc :edit $HOME/.vimrc
+command Svimrc :source $HOME/.vimrc
 
 "==================== showmarks.vim ====================
 let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -465,3 +472,15 @@ nmap <Leader>re :<C-u>Ref webdict ej<Space>
 
 "==================== ctrlp.vim ====================
 let g:ctrlp_map = '<c-l>'
+
+"==================== vim-over ====================
+
+" over.vimの起動
+nnoremap <silent> <Leader>o :OverCommandLine<CR>
+
+" カーソル下の単語をハイライト付きで置換
+nnoremap sub :OverCommandLine<CR>%s/<C-r><C-w>//g<Left><Left>
+
+" コピーした文字列をハイライト付きで置換
+nnoremap subp y:OverCommandLine<CR>%s!<C-r>=substitute(@0, '!', '\\!', 'g')<CR>!!gI<Left><Left><Left>
+
