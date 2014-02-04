@@ -65,6 +65,12 @@ alias tls="tmux ls"
 if which rbenv >& /dev/null ; then
     eval "$(rbenv init -)"
 fi
+export PYENV_ROOT="${HOME}/.pyenv"
+if [ -d "${PYENV_ROOT}" ]; then
+    export PATH=${PYENV_ROOT}/bin:$PATH
+    eval "$(pyenv init -)"
+fi
+
 source ~/.zsh/aws_zsh_completer.sh
 
 # 入力したコマンドがすでにコマンド履歴に含まれる場合、履歴から古いほうのコマンドを削除する
@@ -78,3 +84,4 @@ setopt auto_pushd
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+
