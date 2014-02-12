@@ -56,8 +56,9 @@ NeoBundle 'git://github.com/h1mesuke/textobj-wiw.git'
 NeoBundle 'git://github.com/kana/vim-textobj-user.git'
 
 "snippet
-NeoBundle 'git://github.com/Shougo/neosnippet.git'
-NeoBundle 'git://github.com/honza/vim-snippets.git'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'honza/vim-snippets'
+NeoBundle 'Shougo/neosnippet-snippets'
 
 "HTML
 NeoBundle 'git://github.com/mattn/zencoding-vim.git'
@@ -202,8 +203,6 @@ nnoremap <silent> ciy ciw<C-r>0<ESC>:let@/=@1<CR>:noh<CR>
 "<C-c> 2回押しで，検索ハイライトを消去
 nnoremap <C-c><C-c> :nohlsearch<CR>
 
-nnoremap <SPACE>c :! perl -wc -Ilib -It/inc %<ENTER>
-
 command Vimrc :edit $HOME/.vimrc
 command Svimrc :source $HOME/.vimrc
 
@@ -281,23 +280,6 @@ let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 " https://github.com/c9s/perlomni.vim
 let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
-" yank to remote
-let g:y2r_config = {
-            \   'tmp_file': '/tmp/exchange_file',
-            \   'key_file': expand('$HOME') . '/.exchange.key',
-            \   'host': 'localhost',
-            \   'port': 52224,
-            \}
-function Yank2Remote()
-    call writefile(split(@", '\n'), g:y2r_config.tmp_file, 'b')
-    let s:params = ['cat %s %s | nc -w1 %s %s']
-    for s:item in ['key_file', 'tmp_file', 'host', 'port']
-        let s:params += [shellescape(g:y2r_config[s:item])]
-    endfor
-    let s:ret = system(call(function('printf'), s:params))
-endfunction
-nnoremap <silent> <unique> <Leader>y :call Yank2Remote()<CR>
-
 "==================== neosnippets ====================
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -328,6 +310,8 @@ endif
 let g:unite_enable_start_insert = 1 "入力モードで開始する
 let g:unite_enable_split_vertically = 1 "縦分割で開く
 let g:unite_marked_icon = "*"
+let g:unite_cursor_line_highlight = "TabLineSel"
+let g:unite_abbr_highlight = "TabLine"
 "unite prefix key
 "unite mappings
 nnoremap ,f :<C-u>Unite file<CR>
@@ -353,7 +337,7 @@ au FileType unite inoremap <silent> <buffer> <expr> <C-T> unite#do_action('tabop
 "==================== vimfiler ====================
 let g:vimfiler_as_default_explorer=1
 
-"==================== fugative ====================
+"==================== fugitive ====================
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 "==================== operator replace ====================
@@ -400,7 +384,7 @@ endfunction
 "+ で切り替え
 let g:toggle_pairs = {
     \ 'and': 'or', 'or': 'and',
-    \ 'if': 'elsif', 'elsif': 'else', 'else': 'if'
+    \ 'if': 'unless', 'unless': 'if'
     \ }
 
 "==================== jump2pm ====================
