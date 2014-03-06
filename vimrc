@@ -50,6 +50,7 @@ NeoBundle 'kien/ctrlp.vim'
 "NeoBundle 'ujihisa/camelcasemotion'
 NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'itchyny/calendar.vim'
+NeoBundle 'Shougo/neomru.vim'
 
 "TextObj
 NeoBundle 'git://github.com/h1mesuke/textobj-wiw.git'
@@ -313,7 +314,7 @@ if has('conceal')
     set conceallevel=2 concealcursor=i
 endif
 
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets, ~/.vim/snippets'
 let g:neosnippet#enable_snipmate_compatibility = 1
 
 "==================== syntastic ====================
