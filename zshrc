@@ -62,16 +62,9 @@ alias t="tmux"
 alias tat="tmux a -t"
 alias tls="tmux ls"
 
-if which rbenv >& /dev/null ; then
-    eval "$(rbenv init -)"
-fi
-export PYENV_ROOT="${HOME}/.pyenv"
-if [ -d "${PYENV_ROOT}" ]; then
-    export PATH=${PYENV_ROOT}/bin:$PATH
-    eval "$(pyenv init -)"
-fi
-
-source ~/.zsh/aws_zsh_completer.sh
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
 
 # 入力したコマンドがすでにコマンド履歴に含まれる場合、履歴から古いほうのコマンドを削除する
 # コマンド履歴とは今まで入力したコマンドの一覧のことで、上下キーでたどれる
@@ -81,7 +74,16 @@ setopt hist_ignore_all_dups
 # `cd +<Tab>` でディレクトリの履歴が表示され、そこに移動できる
 setopt auto_pushd
 
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
+if which rbenv >& /dev/null ; then
+    eval "$(rbenv init -)"
+fi
+export PYENV_ROOT="${HOME}/.pyenv"
+if [ -d "${PYENV_ROOT}" ]; then
+    export PATH=${PYENV_ROOT}/bin:$PATH
+    eval "$(pyenv init -)"
+fi
+
+if [ -e ~/.zsh/aws_zsh_completer.sh ]; then
+    source ~/.zsh/aws_zsh_completer.sh
+fi
 
