@@ -82,6 +82,9 @@ if [ -d "${PYENV_ROOT}" ]; then
     export PATH=${PYENV_ROOT}/bin:$PATH
     eval "$(pyenv init -)"
 fi
+if [ -d "$HOME/.plenv" ]; then
+    eval "$(plenv init -)"
+fi
 
 if [ -e ~/.zsh/aws_zsh_completer.sh ]; then
     source ~/.zsh/aws_zsh_completer.sh
