@@ -57,10 +57,12 @@ alias b="git branch"
 alias cm="git commit"
 alias lg="git log"
 alias gg="git grep"
+alias gsl="git --no-pager shortlog --numbered --summary"
 
 alias t="tmux"
 alias tat="tmux a -t"
 alias tls="tmux ls"
+alias tn="tmux new -s"
 
 alias ..="cd .."
 alias ...="cd ../.."
