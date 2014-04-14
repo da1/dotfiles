@@ -454,6 +454,8 @@ endfunction
 nmap <Leader>rj :<C-u>Ref webdict je<Space>
 nmap <Leader>re :<C-u>Ref webdict ej<Space>
 
+let g:ref_open = 'vsplit'
+
 "==================== ctrlp.vim ====================
 let g:ctrlp_map = '<c-l>'
 
