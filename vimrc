@@ -30,7 +30,7 @@ NeoBundle 'git://github.com/vim-scripts/Align.git'
 NeoBundle 'git://github.com/vim-jp/vimdoc-ja.git'
 NeoBundle 'git://github.com/tpope/vim-surround.git'
 NeoBundle 'git://github.com/tpope/vim-pathogen.git'
-"NeoBundle 'git://github.com/scrooloose/syntastic.git'
+NeoBundle 'git://github.com/scrooloose/syntastic.git'
 NeoBundle 'git://github.com/thinca/vim-ref.git'
 NeoBundle 'git://github.com/kana/vim-operator-user.git'
 NeoBundle 'git://github.com/kana/vim-operator-replace.git'
@@ -50,6 +50,7 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'itchyny/calendar.vim'
 NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'git://github.com/vim-scripts/ShowMarks.git'
 
 "TextObj
 NeoBundle 'git://github.com/h1mesuke/textobj-wiw.git'
@@ -165,7 +166,7 @@ set fileencodings=utf-8,euc_jp,iso-2022-jp
 set viminfo='1000,<500
 
 "ファイルタイプによるシンタックス割り当て
-autocmd BufNewFile,BufRead *.t,*.psgi set filetype=perl
+autocmd BufNewFile,BufRead *.t,*.psgi,cpanfile set filetype=perl
 autocmd BufNewFile,BufRead *.scala set filetype=scala
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 autocmd BufNewFile,BufRead *.ts set filetype=typescript
