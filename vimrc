@@ -50,7 +50,6 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'osyo-manga/vim-over'
 NeoBundle 'itchyny/calendar.vim'
 NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'git://github.com/vim-scripts/ShowMarks.git'
 
 "TextObj
 NeoBundle 'git://github.com/h1mesuke/textobj-wiw.git'
@@ -206,9 +205,6 @@ nnoremap <C-c><C-c> :nohlsearch<CR>
 
 command Vimrc :edit $HOME/.vimrc
 command Svimrc :source $HOME/.vimrc
-
-"==================== showmarks.vim ====================
-let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 "==================== neocomplcache ====================
 "Note: This option must set it in .vimrc(_vimrc). NOT IN .gvimrc(_gvimrc)!
