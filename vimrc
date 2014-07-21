@@ -61,7 +61,7 @@ NeoBundle 'honza/vim-snippets'
 NeoBundle 'Shougo/neosnippet-snippets'
 
 "HTML
-NeoBundle 'git://github.com/mattn/zencoding-vim.git'
+NeoBundle 'git://github.com/mattn/emmet-vim.git'
 
 " gosh
 NeoBundle 'git://github.com/aharisu/vim_goshrepl.git'
