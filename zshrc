@@ -68,6 +68,9 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
+# git checkout with peco
+alias gcop='git checkout `git branch | peco | sed -e "s/\* //g" | awk "{print \$1}"`'
+
 # 入力したコマンドがすでにコマンド履歴に含まれる場合、履歴から古いほうのコマンドを削除する
 # コマンド履歴とは今まで入力したコマンドの一覧のことで、上下キーでたどれる
 setopt hist_ignore_all_dups
