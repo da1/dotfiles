@@ -12,7 +12,9 @@ if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim'
+call neobundle#end()
 
 NeoBundle 'git://github.com/Shougo/neobundle.vim.git'
 NeoBundle 'git://github.com/Shougo/unite.vim.git'
@@ -30,7 +32,7 @@ NeoBundle 'git://github.com/vim-scripts/Align.git'
 NeoBundle 'git://github.com/vim-jp/vimdoc-ja.git'
 NeoBundle 'git://github.com/tpope/vim-surround.git'
 NeoBundle 'git://github.com/tpope/vim-pathogen.git'
-NeoBundle 'git://github.com/scrooloose/syntastic.git'
+"NeoBundle 'git://github.com/scrooloose/syntastic.git'
 NeoBundle 'git://github.com/thinca/vim-ref.git'
 NeoBundle 'git://github.com/kana/vim-operator-user.git'
 NeoBundle 'git://github.com/kana/vim-operator-replace.git'
@@ -309,6 +311,7 @@ let g:unite_enable_split_vertically = 1 "縦分割で開く
 let g:unite_marked_icon = "*"
 let g:unite_cursor_line_highlight = "TabLineSel"
 let g:unite_abbr_highlight = "TabLine"
+let g:unite_data_directory = "~/.unite"
 "unite prefix key
 "unite mappings
 nnoremap ,f :<C-u>Unite file<CR>

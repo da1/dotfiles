@@ -19,3 +19,10 @@
 	d4 = diff HEAD~~~~
 	d5 = diff HEAD~~~~~
 	d6 = diff HEAD~~~~~~
+[filter "media"]
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
+[ghq]
+    root = ~/.ghq
+    root = ~/go/packages
