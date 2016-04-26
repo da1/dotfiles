@@ -1,63 +1,39 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+source ~/.zplug/zplug
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-completions"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
 
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
-
-# Comment this out to disable bi-weekly auto-update checks
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment to change how many often would you like to wait before auto-updates occur? (in days)
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment following line if you want to disable colors in ls
-# DISABLE_LS_COLORS="true"
-
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git perl cpanm)
-
-source $ZSH/oh-my-zsh.sh
-
-# Customize to your needs...
-_Z_CMD=j
-source $HOME/.zsh/z/z.sh
-precmd() {
-    _z --add "$(pwd -P)"
-}
-
-# fpathの追加
-for cmd in git perl cpanm ; do
-    fpath=($HOME/oh-my-zsh/plugins/$cmd $fpath)
-done
+# プラグインを読み込み、コマンドにパスを通す
+zplug load --verbose
 
 # 補完を有効化
 autoload -Uz compinit
 compinit -u
 
+# ls color
+export LSCOLORS=gxfxcxdxbxegedabagacad
+export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+export CLICOLOR=true
+
+alias g="git"
 alias st="git status"
 alias b="git branch"
+alias ga="git add"
 alias cm="git commit"
 alias lg="git log"
 alias gg="git grep"
 alias gsl="git --no-pager shortlog --numbered --summary"
+alias gd="git diff"
+alias gcm="git checkout master"
+alias gco="git checkout"
 
 alias t="tmux"
 alias tat="tmux a -t"
@@ -70,6 +46,22 @@ alias ....="cd ../../.."
 
 # git checkout with peco
 alias gcop='git checkout `git branch | peco | sed -e "s/\* //g" | awk "{print \$1}"`'
+
+setopt prompt_subst
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+zstyle ':vcs_info:*' formats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+zstyle ':vcs_info:*' enable git cvs svn
+
+# or use pre_cmd, see man zshcontrib
+vcs_info_wrapper() {
+  vcs_info
+  if [ -n "$vcs_info_msg_0_" ]; then
+    echo "%{$fg[grey]%}${vcs_info_msg_0_}%{$reset_color%}$del"
+  fi
+}
+RPROMPT=$'$(vcs_info_wrapper)'
 
 # http://qiita.com/ysk_1031/items/8cde9ce8b4d0870a129d
 # コマンド履歴を出して検索・絞り込みするやつ
@@ -138,19 +130,23 @@ setopt hist_ignore_all_dups
 # `cd +<Tab>` でディレクトリの履歴が表示され、そこに移動できる
 setopt auto_pushd
 
-if which rbenv >& /dev/null ; then
-    eval "$(rbenv init -)"
-fi
-export PYENV_ROOT="${HOME}/.pyenv"
-if [ -d "${PYENV_ROOT}" ]; then
-    export PATH=${PYENV_ROOT}/bin:$PATH
-    eval "$(pyenv init -)"
-fi
-if [ -d "$HOME/.plenv" ]; then
-    eval "$(plenv init -)"
-fi
-
 if [ -e ~/.zsh/aws_zsh_completer.sh ]; then
     source ~/.zsh/aws_zsh_completer.sh
+fi
+
+if [ -d $HOME/.anyenv ]; then
+    export PATH="$HOME/.anyenv/bin:$PATH"
+    eval "$(anyenv init -)"
+fi
+
+if [ -d $HOME/.docker ]; then
+    if [ `docker-machine status default` = "Stopped" ]; then
+        docker-machine start default
+    fi
+    eval $(docker-machine env default)
+fi
+
+if [ -e ~/.zshrc.local ]; then
+    source ~/.zshrc.local
 fi
 
