@@ -26,6 +26,3 @@
 [ghq]
     root = ~/.ghq
     root = ~/go/packages
-
-[include]
-    path = .gitconfig.local
