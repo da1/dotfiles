@@ -19,10 +19,21 @@
 	d4 = diff HEAD~~~~
 	d5 = diff HEAD~~~~~
 	d6 = diff HEAD~~~~~~
+	fixup = git commit --fixup=HEAD~1
 [filter "media"]
 	required = true
 	clean = git media clean %f
 	smudge = git media smudge %f
 [ghq]
-    root = ~/.ghq
-    root = ~/go/packages
+    #root = ~/.ghq
+    root = ~/go/src
+[pager]
+	log = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
+[interactive]
+	diffFilter = 'diff-highlight'
+[diff]
+	compactionHeuristic = true
+[rebase]
+	autosquash = true

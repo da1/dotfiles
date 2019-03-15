@@ -33,6 +33,8 @@ export LSCOLORS=gxfxcxdxbxegedabagacad
 export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 export CLICOLOR=true
 
+export LESS='-g -i -M -R -W -z-4 -x4'
+
 alias g="git"
 alias st="git status"
 alias b="git branch"
@@ -53,6 +55,9 @@ alias tn="tmux new -s"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+
+alias dm="docker-machine"
+alias d="docker"
 
 # git checkout with peco
 alias gcop='git checkout `git branch | peco | sed -e "s/\* //g" | awk "{print \$1}"`'
