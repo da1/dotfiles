@@ -44,7 +44,8 @@ alias lg="git log"
 alias gg="git grep"
 alias gsl="git --no-pager shortlog --numbered --summary"
 alias gd="git diff"
-alias gcm="git checkout master"
+alias gs="git switch"
+alias gsm="git switch main"
 alias gco="git checkout"
 
 alias t="tmux"
@@ -121,14 +122,14 @@ function peco-src () {
 zle -N peco-src
 bindkey '^]' peco-src
 
-# pecoで最近更新されたブランチにcheckoutする
+# pecoで最近更新されたブランチにswitchする
 # http://blog.shibayu36.org/entry/2014/07/26/151106
 function peco-git-recent-branches () {
     local selected_branch=$(git for-each-ref --format='%(refname)' --sort=-committerdate refs/heads | \
         perl -pne 's{^refs/heads/}{}' | \
         peco)
     if [ -n "$selected_branch" ]; then
-        BUFFER="git checkout ${selected_branch}"
+        BUFFER="git switch ${selected_branch}"
         zle accept-line
     fi
     zle clear-screen
@@ -140,7 +141,7 @@ function peco-git-recent-all-branches () {
         perl -pne 's{^refs/(heads|remotes)/}{}' | \
         peco)
     if [ -n "$selected_branch" ]; then
-        BUFFER="git checkout -t ${selected_branch}"
+        BUFFER="git switch -t ${selected_branch}"
         zle accept-line
     fi
     zle clear-screen
